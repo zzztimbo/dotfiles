@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<settings xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <!-- Uncomment the next line if you are on windows -->
+    <!-- <localRepository>C:/.m2/repository</localRepository> -->
+
+    <profiles>
+        <profile>
+            <id>developer</id>
+            <repositories>
+                <repository>
+                    <id>edmunds-build</id>
+                    <name>Edmunds Local Repository</name>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+					<url>http://arm.vip.edmunds.com:8081/nexus/content/groups/edmunds-build</url>
+                </repository>
+                <repository>
+                    <id>edmunds-proxy</id>
+                    <name>Edmunds Remote Proxy</name>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+					 <url>http://arm.vip.edmunds.com:8081/nexus/content/groups/edmunds-proxy</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>edmunds-proxy</id>
+                    <name>Edmunds Remote Proxy</name>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+					 <url>http://arm.vip.edmunds.com:8081/nexus/content/groups/edmunds-proxy</url>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>edmunds-build</id>
+                    <name>Edmunds Local Repository</name>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+					<url>http://arm.vip.edmunds.com:8081/nexus/content/groups/edmunds-build</url>
+                </pluginRepository>
+            </pluginRepositories>
+            <properties>
+                <maven.clover.licenseLocation>/home/tchan/clover.license</maven.clover.licenseLocation>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>developer-snapshot</id>
+            <repositories>
+                <repository>
+                    <id>edmunds-build-snapshot</id>
+                    <name>Edmunds Snapshot Repository</name>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <url>http://arm.vip.edmunds.com:8081/nexus/content/groups/edmunds-build-snapshot/</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>edmunds-build-snapshot</id>
+                    <name>Edmunds Snapshot Repository</name>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <url>http://arm.vip.edmunds.com:8081/nexus/content/groups/edmunds-build-snapshot/</url>
+                </pluginRepository>
+            </pluginRepositories>
+            <properties>
+                <maven.clover.licenseLocation>/home/tchan/clover.license</maven.clover.licenseLocation>
+            </properties>
+        </profile>
+    </profiles>
+
+    <servers>
+        <server>
+            <id>snapshot-deployment</id>
+            <username>snapshot-deploy</username>
+            <password>snapshot</password>
+        </server>
+        <server>
+            <id>artifactory-deployment</id>
+            <username>YOUR_USERNAME</username>
+            <password>YOUR_PASSWORD</password>
+        </server>
+        <server>
+            <id>site-deployment</id>
+            <username>mavensite</username>
+            <password>YOUR_PASSWORD</password>
+        </server>
+    </servers>
+
+    <activeProfiles>
+        <activeProfile>developer</activeProfile>
+        <activeProfile>developer-snapshot</activeProfile>
+    </activeProfiles>
+
+    <mirrors>
+        <mirror>
+            <id>nexus</id>
+            <mirrorOf>central</mirrorOf>
+            <url>http://arm.vip.edmunds.com:8081/nexus/content/groups/edmunds-proxy</url>
+        </mirror>
+    </mirrors>
+
+</settings>
